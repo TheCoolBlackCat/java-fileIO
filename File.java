@@ -17,7 +17,7 @@ public class File {
     private String path;
 
     /**
-     * @param n Path to the file (including file name and extension)
+     * @param path Path to the file (including file name and extension)
      * */
     public File (String path) {
         this.path = path;
