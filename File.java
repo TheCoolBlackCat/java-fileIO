@@ -1,5 +1,6 @@
 /* File I/O for Java
  * Timothy Clark, 2018
+ * github.com/TheCoolBlackCat/java-fileIO
  */
 
 import java.util.ArrayList;
