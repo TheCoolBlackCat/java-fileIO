@@ -1,6 +1,5 @@
 /* File I/O for Java
  * Timothy Clark, 2018
- * github.com/TheCoolBlackCat/java-fileIO
  */
 
 import java.util.ArrayList;
@@ -9,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+
+import java.io.FileOutputStream;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,9 +25,8 @@ public class File {
     }
 
     /**
-     * Read File
+     * Read text from file
      * @return Output of the file, stored line by line in an array
-     * @throws FileNotFoundException File was not found at path specified in constructor
      * */
     public String[] read () {
         ArrayList<String> output = new ArrayList<String>();
@@ -53,7 +53,7 @@ public class File {
     }
 
     /**
-     * Read File
+     * Write text to file
      * @param text Array of lines to write into file
      * */
     public void write (String[] text) {
@@ -66,8 +66,33 @@ public class File {
             }
 
             bw.close(); // Close file
-        } catch (IOException e) { // Exception Handling
+        // Exception Handling
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Write byte array to file
+     * @param bytes Array of bytes to write into file
+     * */
+    public void write (byte[] bytes) {
+      FileOutputStream s = null;
+        try {
+            s = new FileOutputStream(path);
+        } catch (FileNotFoundException e) {
+            System.err.println("File at \""+path+ "\" not found!");
+        }
+
+        if (s != null) {
+            try {
+                for (byte b: bytes)
+                    s.write(b);
+                s.close();
+            // Exception Handling
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+       }
+  }
 }
